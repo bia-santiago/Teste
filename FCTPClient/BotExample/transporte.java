@@ -11,6 +11,11 @@ import FCTPClient.data.Edge;
 import FCTPClient.data.FCTPGraph;
 import FCTPClient.data.Node;
 import FCTPClient.utils.InstanceConverter;
+import scpsolver.constraints.LinearBiggerThanEqualsConstraint;
+import scpsolver.constraints.LinearSmallerThanEqualsConstraint;
+import scpsolver.lpsolver.LinearProgramSolver;
+import scpsolver.lpsolver.SolverFactory;
+import scpsolver.problems.LinearProgram;
 
 
 
@@ -37,31 +42,28 @@ public class transporte{
     
 	public static void main(String[] args) throws Exception {
 		
-		File folder = new File("/Users/beatrizsantiago/Documents/workspace/FCTPClient/FCTPInstances");
+		File folder = new File("/Users/beatrizsantiago/git/gametheory/FCTPClient/FCTPInstances");
 		File[] listOfFiles = folder.listFiles();
 		
 		FCTPGraph problem;
 		
 		//String filename = ".\\Instancias\\" + listOfFiles[1].getName();
 		
-		for (File filename : listOfFiles) {
-			System.out.println(filename.getName());
-		}
+		//for (File filename : listOfFiles) {
+			//System.out.println(filename.getName());
+		//}
 		
-        for (File filename : listOfFiles) {
-        	String fullname = "/Users/beatrizsantiago/Documents/workspace/FCTPClient/FCTPInstances/" + filename.getName();
-        	//String fullname = "/Users/beatrizsantiago/Documents/workspace/FCTPClient/FCTPInstances/" + listOfFiles[1].getName();
+        //for (File filename : listOfFiles) {
+        	//String fullname = "/Users/beatrizsantiago/git/gametheory/FCTPClient/FCTPInstances/" + filename.getName();
+        	String fullname = "/Users/beatrizsantiago/git/gametheory/FCTPClient/FCTPInstances/" + listOfFiles[1].getName();
         	System.out.println(fullname);
         	problem = InstanceConverter.convert(fullname);
             System.out.println(problem.getName());
             init(problem);
-            System.out.println("1");
             northWestCornerRule();
-            System.out.println("2");
             steppingStone();
-            System.out.println("3");
             printResult(fullname);
-        }
+        //}
     }
 	
 	static void printResult(String filename) {
